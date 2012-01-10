@@ -151,18 +151,3 @@ def pre_build():
 def post_build():
     #Do whatever you want after the _site is built
     pass
-
-######################################################################
-# Blogofile.com specific
-######################################################################
-#Build the example photo_gallery controller
-controllers.photo_gallery.enabled = True
-
-docs = controllers.docs
-docs.enabled = True
-##############################################
-### Blogofile release variables
-### (These are custom vars for blogofile.com)
-##############################################
-release_version = "0.7.1"
-release_download_link = "http://pypi.python.org/packages/source/B/Blogofile/blogofile-0.7.1.tar.gz"
