@@ -61,26 +61,30 @@ def scaleAndOrientImages(outputDirectory, imageFilenames):
     outputDirectory.makedirs()
 
     for imageFilename in imageFilenames:
-        image = Image(imageFilename.path)
-        orientation = image.attribute(EXIF_ORIENTATION)
-        rotation = ROTATIONS[orientation]
-        if rotation:
-            # This should really fix the EXIF Orientation, but it doesn't.
-            image.attribute(EXIF_ORIENTATION, '1')
-            image.rotate(rotation)
-        orientedFilename = outputDirectory.child("oriented-" + imageFilename.basename())
-        image.write(orientedFilename.path)
-        geometry = image.size()
-        image.scale(Geometry(int(geometry.width() * 0.12), int(geometry.height() * 0.12)))
-        scaledFilename = outputDirectory.child("scaled-" + imageFilename.basename())
-        image.write(scaledFilename.path)
+        for (prefix, scale) in [('medium-', 0.5), ('small-', 0.125)]:
+            image = Image(imageFilename.path)
+            orientation = image.attribute(EXIF_ORIENTATION)
+            rotation = ROTATIONS[orientation]
+            if rotation:
+                # This should really fix the EXIF Orientation, but it doesn't.
+                image.attribute(EXIF_ORIENTATION, '1')
+                image.rotate(rotation)
 
-        # Fix the EXIF metadata, because PythonMagick is busted.
-        for written in [orientedFilename, scaledFilename]:
-            metadata = ImageMetadata(written.path)
-            metadata.read()
-            metadata['Exif.Image.Orientation'] = 1
-            metadata.write()
+            # Chop it down
+            geometry = image.size()
+            width = int(geometry.width() * scale)
+            height = int(geometry.height() * scale)
+            image.scale(Geometry(width, width))
+            scaledFilename = outputDirectory.child(
+                prefix + imageFilename.basename())
+            image.write(scaledFilename.path)
+
+            if rotation:
+                # Fix the EXIF metadata, because PythonMagick is busted.
+                metadata = ImageMetadata(scaledFilename.path)
+                metadata.read()
+                metadata['Exif.Image.Orientation'] = 1
+                metadata.write()
 
 if __name__ == '__main__':
     main()
