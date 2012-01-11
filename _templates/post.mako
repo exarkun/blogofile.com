@@ -6,8 +6,10 @@ post_id = re.sub("[ ?]","-",post.title.lower()) %>
 
 <div class="blog_post" id="${post_id}">
   <a class="blog_post_title" name="${post.title}" />
-  <h2 class="blog_post_title"><a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a></h2>
-  <small>${post.date.strftime("%B %d, %Y at %I:%M %p")} | categories: 
+  <h2 class="blog_post_title">
+    <a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a>
+  </h2>
+  <small><span>by ${post.author}</span> | ${post.date.strftime("%B %d, %Y at %I:%M %p")} | categories: 
 <% 
    category_links = []
    for category in post.categories:
