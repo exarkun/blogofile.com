@@ -21,7 +21,7 @@
 <!-- Commits?  Maybe - there is some related software.
   <div id="commits">
     <h3>Latest Commits</h3>
-    <div id="commitsRSS">&nbsp;</div>
+    <div id="commitsRSS">&#160;</div>
     <script type="text/javascript" src="http://www.google.com/reader/ui/publisher-en.js"></script>
 <script type="text/javascript" src="http://www.google.com/reader/public/javascript/user/08579104000195997276/label/Blogofile Commits?n=5&callback=commitsRSSRender"></script>
     <a href="http://github.com/EnigmaCurry/blogofile/commits/master" style="float: right">See more commits</a><br/>
@@ -39,7 +39,7 @@
     <h3>Archives</h3>
     <ul>
 % for link, name, num_posts in bf.config.blog.archive_links:
-      <li><a href="${bf.util.site_path_helper(bf.config.blog.path,link)}/1" title="${name}">${name}</a>&nbsp;(${num_posts})</li>
+      <li><a href="${bf.util.site_path_helper(bf.config.blog.path,link)}/1" title="${name}">${name}</a>&#160;(${num_posts})</li>
 % endfor
     </ul>
   </div>

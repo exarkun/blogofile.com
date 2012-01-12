@@ -28,7 +28,7 @@ logger = logging.getLogger("blogofile.config")
 #  If you're hosting a blogofile powered site as a subdirectory of a larger
 #  non-blogofile site, then you would set the site_url to the full URL
 #  including that subdirectory: "http://www.yoursite.com/path/to/blogofile-dir"
-site.url         = "http://intarweb.us/"
+site.url         = "http://watchthis.farmr.com/"
 
 #### Blog Settings ####
 blog = controllers.blog
@@ -76,7 +76,7 @@ blog.auto_permalink.path    = "/blog/:year/:month/:day/:title"
 ######################################################################
 #### Disqus.com comment integration ####
 blog.disqus.enabled = True
-blog.disqus.name    = "blogofile"
+blog.disqus.name    = "watch-this"
 
 ### Syntax highlighter ###
 # You can change the style to any builtin Pygments style
