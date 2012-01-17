@@ -131,8 +131,7 @@ site.file_ignore_patterns = [
     r".*([\/]|[\\])\.bzr", #Bazaar VCS dir
     r".*([\/]|[\\])\.svn", #Subversion VCS dir
     r".*([\/]|[\\])CVS"    #CVS dir
-    r"twistd.log",
-    r"twistd.pid",
+    r".*([\/]|[\\])twistd.\(log|pid)",
     ]
 
 #### Default post filters ####
